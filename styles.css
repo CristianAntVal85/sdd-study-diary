@@ -1,0 +1,902 @@
+:root {
+  color-scheme: light;
+  --paper: #e9eef6;
+  --paper-line: rgba(16, 31, 56, 0.05);
+  --sheet: #ffffff;
+  --field: #f7f9fc;
+  --ink: #101f38;
+  --ink-soft: #56657e;
+  --line: #c9d5e4;
+  --line-control: #7b8aa0;
+  --ember: #f04e23;
+  --ember-ink: #b8360f;
+  --ember-soft: #fdeee8;
+  --on-ink: #f6f9fd;
+  --on-ink-soft: #b9c6d8;
+  --ink-surface: #101f38;
+  --primary-bg: #b8360f;
+  --primary-text: #ffffff;
+  --primary-border: #101f38;
+  --primary-hover: #9c2d0b;
+  --primary-shadow: #101f38;
+  --secondary-hover-bg: #f5f8fc;
+  --secondary-hover-border: #56657e;
+  --row-hover: #f5f8fc;
+  --empty-bg: #f9fbfd;
+  --focus-ring: #b8360f;
+  --selection-bg: #b8360f;
+  --selection-text: #ffffff;
+  --placeholder: #64748b;
+  --shadow-hard: 4px 4px 0 rgba(16, 31, 56, 0.08);
+  --shadow-chip: 2px 2px 0 rgba(16, 31, 56, 0.06);
+  --shadow-tooltip: 0 4px 14px rgba(16, 31, 56, 0.25);
+  --shadow-press: 1px 1px 0 #101f38;
+  --heat-0: #dce5f0;
+  --heat-1: #ffc9ac;
+  --heat-2: #ff9f72;
+  --heat-3: #e85f2a;
+  --heat-4: #b8330b;
+  --heat-future: #dce5f0;
+  --future-opacity: 0.55;
+  --goal-fill: #b8360f;
+  --tooltip-bg: #101f38;
+  --tooltip-text: #f6f9fd;
+  --tooltip-outline: transparent;
+}
+
+/* Dark theme. The attribute lives on <html>, so :root is the right selector.
+   Its value is "oscuro", the theme name used by ThemeLogic and the boot script. */
+:root[data-theme="oscuro"] {
+  color-scheme: dark;
+  --paper: #14181f;
+  --paper-line: rgba(233, 238, 246, 0.05);
+  --sheet: #1c222c;
+  --field: #202832;
+  --ink: #eef2f8;
+  --ink-soft: #a7b4c6;
+  --line: #3a4553;
+  --line-control: #63718a;
+  --ember: #ff6b3d;
+  --ember-ink: #ff8f63;
+  --ember-soft: #3a2018;
+  --on-ink: #eef2f8;
+  --on-ink-soft: #a7b4c6;
+  --ink-surface: #0b1016;
+  --primary-bg: #ff6b3d;
+  --primary-text: #14181f;
+  --primary-border: #14181f;
+  --primary-hover: #ff8358;
+  --primary-shadow: #0b1016;
+  --secondary-hover-bg: #242c38;
+  --secondary-hover-border: #a7b4c6;
+  --row-hover: #232b36;
+  --empty-bg: #171d26;
+  --focus-ring: #ff6b3d;
+  --selection-bg: #ff6b3d;
+  --selection-text: #14181f;
+  --placeholder: #8e9cb0;
+  --shadow-hard: 4px 4px 0 rgba(0, 0, 0, 0.45);
+  --shadow-chip: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-tooltip: 0 6px 18px rgba(0, 0, 0, 0.55);
+  --shadow-press: 1px 1px 0 #0b1016;
+  --heat-0: #2c3441;
+  --heat-1: #6b3f2c;
+  --heat-2: #a85732;
+  --heat-3: #ea6b31;
+  --heat-4: #ff9f63;
+  --heat-future: #232a35;
+  --future-opacity: 1;
+  --goal-fill: #ea6b31;
+  --tooltip-bg: #e9eef6;
+  --tooltip-text: #101f38;
+  --tooltip-outline: #101f38;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--paper-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--ink);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.65;
+}
+
+.container {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+h1 {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: clamp(2rem, 7vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  padding-bottom: 0.85rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+h2 {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+/* Header: the title and the theme toggle share the row of the old h1. */
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+/* The line and the spacing moved to the header, so the title keeps its look.
+   The title can share the row with the button: it grows and wraps if needed. */
+.app-header h1 {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+/* Narrower than 360 px the header stacks: title first, button right below. */
+@media (max-width: 359px) {
+  .app-header h1 {
+    flex-basis: 100%;
+  }
+}
+
+/* Same visual language as the secondary button. */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  margin-left: auto;
+  padding: 0.55rem 0.9rem;
+  background-color: var(--sheet);
+  color: var(--ink);
+  border: 2px solid var(--line-control);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.theme-toggle svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+/* The inline script toggles the hidden attribute; this keeps it working even
+   if a browser does not style it by itself. */
+.theme-toggle svg[hidden] {
+  display: none;
+}
+
+.theme-toggle-label {
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.theme-toggle:hover {
+  background-color: var(--secondary-hover-bg);
+  border-color: var(--secondary-hover-border);
+}
+
+.theme-toggle:active {
+  transform: translate(1px, 1px);
+}
+
+/* The dark theme is shown by its own background and border, not only by the
+   icon. It wins over the hover colours because the applied theme selects it. */
+:root[data-theme="oscuro"] .theme-toggle {
+  background-color: var(--ember-soft);
+  border-color: var(--ember-ink);
+  color: var(--ink);
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* A theme change must not blend colours: ThemeRuntime adds this class to
+   <html> for a single frame. */
+.theme-switching,
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Streak hero */
+.streak-section {
+  display: block;
+}
+
+.streak-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.streak-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 1.6rem 1.75rem;
+  background: var(--ink-surface);
+  color: var(--on-ink);
+  border-radius: 18px;
+  box-shadow: 6px 6px 0 var(--ember);
+}
+
+.streak-icon {
+  font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji",
+    sans-serif;
+  font-size: 3.25rem;
+  line-height: 1;
+}
+
+.streak-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 0 1 auto;
+}
+
+.streak-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--on-ink-soft);
+}
+
+.streak-count {
+  font-size: clamp(3.8rem, 14vw, 5.25rem);
+  font-weight: 800;
+  line-height: 0.9;
+  color: var(--ember);
+  font-variant-numeric: tabular-nums;
+}
+
+.streak-days {
+  font-size: 0.85rem;
+  color: var(--on-ink-soft);
+}
+
+.best-streak-row {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow-chip);
+  color: var(--ink-soft);
+}
+
+.best-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.best-label,
+.best-days {
+  font-size: 0.8rem;
+}
+
+.best-count {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Stat strips */
+.weekly-section,
+.monthly-section {
+  display: block;
+}
+
+.weekly-card,
+.monthly-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--ember);
+  border-radius: 14px;
+  box-shadow: var(--shadow-hard);
+  text-align: left;
+}
+
+.weekly-card h2,
+.monthly-card h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.weekly-minutes,
+.monthly-days {
+  font-size: 1.65rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--ember-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Weekly goal */
+.goal-block,
+.goal-form {
+  flex: 1 1 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+.goal-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--line);
+}
+
+.goal-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.goal-text {
+  max-width: 46ch;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.goal-target {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Track and fill. --goal-progress is the ratio from 0 to 1 set by the app. */
+.goal-progress {
+  --goal-progress: 0;
+  width: 100%;
+  height: 12px;
+  background: var(--heat-0);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.goal-progress-fill {
+  width: calc(var(--goal-progress) * 100%);
+  height: 100%;
+  background: var(--goal-fill);
+  transition: width 0.25s ease;
+}
+
+.goal-summary {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.goal-message {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ember-ink);
+}
+
+.goal-block .btn-primary,
+.goal-block .btn-secondary {
+  width: auto;
+  min-height: 44px;
+  margin-top: 0.15rem;
+  padding: 0.7rem 1.25rem;
+}
+
+.goal-form {
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--line);
+}
+
+.goal-form .form-group {
+  margin-bottom: 0.85rem;
+}
+
+.goal-hint {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  overflow-wrap: break-word;
+}
+
+.goal-error {
+  padding: 0.45rem 0.65rem;
+  background: var(--ember-soft);
+  border-left: 3px solid var(--ember);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ember-ink);
+  overflow-wrap: break-word;
+}
+
+.goal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.goal-actions button {
+  flex: 1 1 auto;
+  width: auto;
+  min-height: 44px;
+  padding: 0.7rem 0.9rem;
+}
+
+/* Form */
+.form-section,
+.sessions-section {
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-hard);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
+}
+
+label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+input {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  background: var(--field);
+  border: 1px solid var(--line-control);
+  border-radius: 9px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--ink);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input::placeholder {
+  color: var(--placeholder);
+}
+
+input:focus {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 1px;
+  border-color: var(--focus-ring);
+}
+
+.btn-primary {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.8rem 1rem;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  border: 2px solid var(--primary-border);
+  border-radius: 10px;
+  box-shadow: 3px 3px 0 var(--primary-shadow);
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.12s, box-shadow 0.12s;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-press);
+}
+
+.btn-secondary {
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  background-color: var(--sheet);
+  color: var(--ink);
+  border: 2px solid var(--line-control);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.12s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-hover-bg);
+  border-color: var(--secondary-hover-border);
+}
+
+.btn-secondary:active {
+  transform: translate(1px, 1px);
+}
+
+/* Heat map */
+.heatmap-section {
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-hard);
+}
+
+.heatmap-section h2 {
+  margin-bottom: 0.9rem;
+}
+
+.heatmap-chart {
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 0.45rem;
+  row-gap: 0.3rem;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+}
+
+.heatmap-months {
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 3px;
+  min-height: 0.9rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ink-soft);
+}
+
+.heatmap-month-label {
+  white-space: nowrap;
+}
+
+.heatmap-weekdays {
+  grid-column: 1;
+  grid-row: 2;
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  gap: 3px;
+  align-items: center;
+  justify-items: center;
+  font-size: 0.58rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ink-soft);
+}
+
+.heatmap-grid {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.heatmap-cell {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
+  padding: 0;
+  background: var(--heat-0);
+  border: 0;
+  border-radius: 3px;
+  appearance: none;
+  cursor: default;
+}
+
+.heatmap-cell[data-level="0"] {
+  background: var(--heat-0);
+}
+
+.heatmap-cell[data-level="1"] {
+  background: var(--heat-1);
+  cursor: pointer;
+}
+
+.heatmap-cell[data-level="2"] {
+  background: var(--heat-2);
+  cursor: pointer;
+}
+
+.heatmap-cell[data-level="3"] {
+  background: var(--heat-3);
+  cursor: pointer;
+}
+
+.heatmap-cell[data-level="4"] {
+  background: var(--heat-4);
+  cursor: pointer;
+}
+
+.heatmap-cell:disabled {
+  background: var(--heat-future);
+  opacity: var(--future-opacity);
+  cursor: default;
+}
+
+@media (hover: hover) {
+  .heatmap-cell:not(:disabled):hover {
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 0 2px var(--ember);
+  }
+}
+
+.heatmap-cell:focus-visible {
+  position: relative;
+  z-index: 2;
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.heatmap-tooltip {
+  position: fixed;
+  z-index: 50;
+  padding: 0.32rem 0.55rem;
+  background: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  border-radius: 6px;
+  box-shadow: var(--shadow-tooltip);
+  outline: 2px solid var(--tooltip-outline);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Sessions ledger */
+.sessions-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.session-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.9rem 0.5rem;
+  margin: 0 -0.5rem;
+  border-bottom: 1px dashed var(--line);
+  border-radius: 8px;
+}
+
+.session-item:first-child {
+  padding-top: 0.2rem;
+}
+
+.session-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0.2rem;
+}
+
+.session-item:hover {
+  background: var(--row-hover);
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.session-date {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.session-minutes {
+  padding: 0.12rem 0.55rem;
+  background: var(--ember-soft);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ember-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.session-theme {
+  font-size: 1rem;
+  color: var(--ink);
+  word-wrap: break-word;
+}
+
+.empty-state {
+  padding: 1.4rem 1rem;
+  background: var(--empty-bg);
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.hidden {
+  display: none;
+}
+
+/* The goal blocks and its form use flex, so `hidden` needs to win. */
+[hidden] {
+  display: none !important;
+}
+
+/* --focus-ring keeps the indicator at 5.9:1 or more in both themes
+   (WCAG 2.1 SC 1.4.11 asks for 3:1). */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 1.25rem 0.8rem 2rem;
+    gap: 1.35rem;
+  }
+
+  .streak-card {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.35rem;
+    box-shadow: 4px 4px 0 var(--ember);
+  }
+
+  .streak-info {
+    align-items: center;
+    text-align: center;
+  }
+
+  .streak-icon {
+    font-size: 2.75rem;
+  }
+
+  .weekly-card,
+  .monthly-card {
+    padding: 0.85rem 1rem;
+  }
+
+  .weekly-card h2,
+  .monthly-card h2 {
+    font-size: 0.95rem;
+  }
+
+  .weekly-minutes,
+  .monthly-days {
+    font-size: 1.4rem;
+  }
+
+  .heatmap-section {
+    padding: 1.15rem;
+  }
+
+  .heatmap-chart {
+    grid-template-columns: 0.95rem minmax(0, 1fr);
+    column-gap: 0.35rem;
+    row-gap: 0.25rem;
+  }
+
+  .heatmap-months,
+  .heatmap-grid,
+  .heatmap-weekdays {
+    gap: 2px;
+  }
+
+  .heatmap-months {
+    font-size: 0.56rem;
+  }
+
+  .heatmap-weekdays {
+    font-size: 0.55rem;
+  }
+
+  .form-section,
+  .sessions-section {
+    padding: 1.15rem;
+  }
+
+  .session-item {
+    padding: 0.8rem 0.4rem;
+    margin: 0 -0.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .goal-progress-fill {
+    transition: none;
+  }
+}
