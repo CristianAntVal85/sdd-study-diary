@@ -1,46 +1,67 @@
 :root {
   color-scheme: light;
-  --paper: #e9eef6;
-  --paper-line: rgba(16, 31, 56, 0.05);
+  --paper: #fff7e9;
   --sheet: #ffffff;
-  --field: #f7f9fc;
-  --ink: #101f38;
-  --ink-soft: #56657e;
-  --line: #c9d5e4;
-  --line-control: #7b8aa0;
-  --ember: #f04e23;
-  --ember-ink: #b8360f;
-  --ember-soft: #fdeee8;
-  --on-ink: #f6f9fd;
-  --on-ink-soft: #b9c6d8;
-  --ink-surface: #101f38;
-  --primary-bg: #b8360f;
+  --field: #f1f5ff;
+  --ink: #26272b;
+  --ink-soft: #646a78;
+  --line: #e7e2d3;
+  --line-control: #c7cdd6;
+
+  /* Marca: verde primario (botones, foco, selección, barra, mapa de calor).
+     Más oscuro que un verde Duolingo "de pantalla" a propósito: con texto
+     blanco encima (botón, selección) hace falta este tono para 4.5:1. */
+  --ember: #2f7f15;
+  --ember-ink: #25740e;
+  --ember-soft: #e3f6d9;
+
+  /* Racha: naranja llama. Tono quemado, no el naranja vivo de un icono:
+     tiene que leerse sobre el dorado de la tarjeta y sobre su propio chip. */
+  --flame: #ff9600;
+  --flame-ink: #985100;
+  --flame-soft: #ffefd6;
+
+  /* Objetivo semanal: azul */
+  --blue: #1e96e0;
+  --blue-ink: #0c6faf;
+  --blue-soft: #e3f4fd;
+
+  /* Error: rojo, reservado para avisos (nunca para "correcto") */
+  --error: #ea2b2b;
+  --error-ink: #c21e1e;
+  --error-soft: #fdeaea;
+
+  /* Tarjeta de racha: fondo dorado con texto oscuro */
+  --ink-surface: #ffc93c;
+  --on-ink: #3a2600;
+  --on-ink-soft: #6e4f10;
+
+  --primary-bg: var(--ember);
   --primary-text: #ffffff;
-  --primary-border: #101f38;
-  --primary-hover: #9c2d0b;
-  --primary-shadow: #101f38;
-  --secondary-hover-bg: #f5f8fc;
-  --secondary-hover-border: #56657e;
-  --row-hover: #f5f8fc;
-  --empty-bg: #f9fbfd;
-  --focus-ring: #b8360f;
-  --selection-bg: #b8360f;
+  --primary-border: var(--ember);
+  --primary-hover: #296c13;
+  --primary-shadow: var(--ember-ink);
+  --secondary-hover-bg: #f3f6ff;
+  --secondary-hover-border: var(--ink-soft);
+  --row-hover: #fbf5e8;
+  --empty-bg: #fbf7ee;
+  --focus-ring: var(--ember-ink);
+  --selection-bg: var(--ember);
   --selection-text: #ffffff;
-  --placeholder: #64748b;
-  --shadow-hard: 4px 4px 0 rgba(16, 31, 56, 0.08);
-  --shadow-chip: 2px 2px 0 rgba(16, 31, 56, 0.06);
-  --shadow-tooltip: 0 4px 14px rgba(16, 31, 56, 0.25);
-  --shadow-press: 1px 1px 0 #101f38;
-  --heat-0: #dce5f0;
-  --heat-1: #ffc9ac;
-  --heat-2: #ff9f72;
-  --heat-3: #e85f2a;
-  --heat-4: #b8330b;
-  --heat-future: #dce5f0;
-  --future-opacity: 0.55;
-  --goal-fill: #b8360f;
-  --tooltip-bg: #101f38;
-  --tooltip-text: #f6f9fd;
+  --placeholder: #8a91a0;
+  --shadow-hard: 0 10px 24px -14px rgba(38, 39, 43, 0.35);
+  --shadow-chip: 0 2px 6px rgba(38, 39, 43, 0.14);
+  --shadow-tooltip: 0 10px 22px rgba(38, 39, 43, 0.3);
+  --heat-0: #e3efd9;
+  --heat-1: #bfe3a1;
+  --heat-2: #8fd065;
+  --heat-3: #5cb832;
+  --heat-4: #2e9112;
+  --heat-future: #ececec;
+  --future-opacity: 0.65;
+  --goal-fill: var(--blue);
+  --tooltip-bg: var(--ink);
+  --tooltip-text: #fff7e9;
   --tooltip-outline: transparent;
 }
 
@@ -48,48 +69,61 @@
    Its value is "oscuro", the theme name used by ThemeLogic and the boot script. */
 :root[data-theme="oscuro"] {
   color-scheme: dark;
-  --paper: #14181f;
-  --paper-line: rgba(233, 238, 246, 0.05);
-  --sheet: #1c222c;
-  --field: #202832;
-  --ink: #eef2f8;
-  --ink-soft: #a7b4c6;
-  --line: #3a4553;
-  --line-control: #63718a;
-  --ember: #ff6b3d;
-  --ember-ink: #ff8f63;
-  --ember-soft: #3a2018;
-  --on-ink: #eef2f8;
-  --on-ink-soft: #a7b4c6;
-  --ink-surface: #0b1016;
-  --primary-bg: #ff6b3d;
-  --primary-text: #14181f;
-  --primary-border: #14181f;
-  --primary-hover: #ff8358;
-  --primary-shadow: #0b1016;
+  --paper: #12151b;
+  --sheet: #1c212b;
+  --field: #232834;
+  --ink: #ecedf2;
+  --ink-soft: #9aa3b2;
+  --line: #2e333e;
+  --line-control: #4a5160;
+
+  --ember: #4ccb23;
+  --ember-ink: #7fe65a;
+  --ember-soft: #1f3316;
+
+  --flame: #ffa733;
+  --flame-ink: #ffc470;
+  --flame-soft: #3a2810;
+
+  --blue: #3fc1ff;
+  --blue-ink: #8fdbff;
+  --blue-soft: #16303d;
+
+  --error: #ff5a5a;
+  --error-ink: #ffb4b4;
+  --error-soft: #3a1616;
+
+  --ink-surface: #4a3410;
+  --on-ink: #ffe7ae;
+  --on-ink-soft: #d8b977;
+
+  --primary-bg: var(--ember);
+  --primary-text: #0d1a08;
+  --primary-border: var(--ember);
+  --primary-hover: #58db2e;
+  --primary-shadow: #1f5a0c;
   --secondary-hover-bg: #242c38;
-  --secondary-hover-border: #a7b4c6;
+  --secondary-hover-border: var(--ink-soft);
   --row-hover: #232b36;
   --empty-bg: #171d26;
-  --focus-ring: #ff6b3d;
-  --selection-bg: #ff6b3d;
-  --selection-text: #14181f;
+  --focus-ring: var(--ember-ink);
+  --selection-bg: var(--ember);
+  --selection-text: #0d1a08;
   --placeholder: #8e9cb0;
-  --shadow-hard: 4px 4px 0 rgba(0, 0, 0, 0.45);
-  --shadow-chip: 2px 2px 0 rgba(0, 0, 0, 0.5);
-  --shadow-tooltip: 0 6px 18px rgba(0, 0, 0, 0.55);
-  --shadow-press: 1px 1px 0 #0b1016;
-  --heat-0: #2c3441;
-  --heat-1: #6b3f2c;
-  --heat-2: #a85732;
-  --heat-3: #ea6b31;
-  --heat-4: #ff9f63;
+  --shadow-hard: 0 10px 24px -14px rgba(0, 0, 0, 0.6);
+  --shadow-chip: 0 2px 6px rgba(0, 0, 0, 0.5);
+  --shadow-tooltip: 0 10px 24px rgba(0, 0, 0, 0.6);
+  --heat-0: #232a24;
+  --heat-1: #2f4a22;
+  --heat-2: #3c6b28;
+  --heat-3: #4a9230;
+  --heat-4: #5ec93a;
   --heat-future: #232a35;
   --future-opacity: 1;
-  --goal-fill: #ea6b31;
-  --tooltip-bg: #e9eef6;
-  --tooltip-text: #101f38;
-  --tooltip-outline: #101f38;
+  --goal-fill: var(--blue);
+  --tooltip-bg: #ecedf2;
+  --tooltip-text: #12151b;
+  --tooltip-outline: #12151b;
 }
 
 * {
@@ -101,13 +135,10 @@
 body {
   min-height: 100vh;
   background-color: var(--paper);
-  background-image:
-    linear-gradient(var(--paper-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
-  background-size: 24px 24px;
   color: var(--ink);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: ui-rounded, "SF Pro Rounded", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    sans-serif;
   line-height: 1.65;
 }
 
@@ -121,18 +152,16 @@ body {
 }
 
 h1 {
-  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-  font-size: clamp(2rem, 7vw, 2.75rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 7vw, 2.6rem);
+  font-weight: 800;
   line-height: 1.1;
-  letter-spacing: -0.02em;
-  padding-bottom: 0.85rem;
-  border-bottom: 2px solid var(--ink);
+  color: var(--ember-ink);
+  padding-bottom: 0.5rem;
 }
 
 h2 {
-  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  font-weight: 800;
   line-height: 1.25;
   margin-bottom: 1rem;
 }
@@ -144,8 +173,7 @@ h2 {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem 1rem;
-  padding-bottom: 0.85rem;
-  border-bottom: 2px solid var(--ink);
+  padding-bottom: 0.5rem;
 }
 
 /* The line and the spacing moved to the header, so the title keeps its look.
@@ -154,7 +182,6 @@ h2 {
   flex: 1 1 0;
   min-width: 0;
   padding-bottom: 0;
-  border-bottom: 0;
 }
 
 /* Narrower than 360 px the header stacks: title first, button right below. */
@@ -164,7 +191,7 @@ h2 {
   }
 }
 
-/* Same visual language as the secondary button. */
+/* Same visual language as the secondary button: a flat face with a 3D ledge. */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -177,11 +204,13 @@ h2 {
   background-color: var(--sheet);
   color: var(--ink);
   border: 2px solid var(--line-control);
-  border-radius: 10px;
+  border-radius: 14px;
+  box-shadow: 0 3px 0 var(--line-control);
   font-size: 0.95rem;
   font-family: inherit;
   font-weight: 700;
   cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s;
 }
 
 .theme-toggle svg {
@@ -208,15 +237,17 @@ h2 {
 }
 
 .theme-toggle:active {
-  transform: translate(1px, 1px);
+  transform: translateY(3px);
+  box-shadow: none;
 }
 
 /* The dark theme is shown by its own background and border, not only by the
    icon. It wins over the hover colours because the applied theme selects it. */
 :root[data-theme="oscuro"] .theme-toggle {
-  background-color: var(--ember-soft);
-  border-color: var(--ember-ink);
+  background-color: var(--flame-soft);
+  border-color: var(--flame-ink);
   color: var(--ink);
+  box-shadow: 0 3px 0 var(--flame-ink);
 }
 
 .theme-toggle:focus-visible {
@@ -234,7 +265,7 @@ h2 {
   animation: none !important;
 }
 
-/* Streak hero */
+/* Streak hero: the boldest card on the page, gold like a trophy shelf. */
 .streak-section {
   display: block;
 }
@@ -252,11 +283,11 @@ h2 {
   justify-content: center;
   gap: 1.5rem;
   width: 100%;
-  padding: 1.6rem 1.75rem;
+  padding: 1.75rem 1.75rem;
   background: var(--ink-surface);
   color: var(--on-ink);
-  border-radius: 18px;
-  box-shadow: 6px 6px 0 var(--ember);
+  border-radius: 26px;
+  box-shadow: var(--shadow-hard);
 }
 
 .streak-icon {
@@ -275,7 +306,7 @@ h2 {
 
 .streak-label {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--on-ink-soft);
 }
 
@@ -283,7 +314,7 @@ h2 {
   font-size: clamp(3.8rem, 14vw, 5.25rem);
   font-weight: 800;
   line-height: 0.9;
-  color: var(--ember);
+  color: var(--flame-ink);
   font-variant-numeric: tabular-nums;
 }
 
@@ -300,8 +331,8 @@ h2 {
   flex-wrap: wrap;
   gap: 0.35rem;
   padding: 0.35rem 0.85rem;
-  background: var(--sheet);
-  border: 1px solid var(--line);
+  background: var(--flame-soft);
+  border: 1px solid var(--flame-ink);
   border-radius: 999px;
   box-shadow: var(--shadow-chip);
   color: var(--ink-soft);
@@ -320,7 +351,7 @@ h2 {
 .best-count {
   font-size: 1rem;
   font-weight: 800;
-  color: var(--ink);
+  color: var(--flame-ink);
   font-variant-numeric: tabular-nums;
 }
 
@@ -341,10 +372,17 @@ h2 {
   padding: 1rem 1.25rem;
   background: var(--sheet);
   border: 1px solid var(--line);
-  border-left: 3px solid var(--ember);
-  border-radius: 14px;
+  border-radius: 18px;
   box-shadow: var(--shadow-hard);
   text-align: left;
+}
+
+.weekly-card {
+  border-left: 4px solid var(--blue);
+}
+
+.monthly-card {
+  border-left: 4px solid var(--flame);
 }
 
 .weekly-card h2,
@@ -353,12 +391,19 @@ h2 {
   margin: 0;
 }
 
-.weekly-minutes,
+.weekly-minutes {
+  font-size: 1.65rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--blue-ink);
+  font-variant-numeric: tabular-nums;
+}
+
 .monthly-days {
   font-size: 1.65rem;
   font-weight: 800;
   line-height: 1;
-  color: var(--ember-ink);
+  color: var(--flame-ink);
   font-variant-numeric: tabular-nums;
 }
 
@@ -371,13 +416,14 @@ h2 {
 }
 
 .goal-block {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5rem;
   margin-top: 0.9rem;
   padding-top: 0.9rem;
-  border-top: 1px dashed var(--line);
+  border-top: 1px solid var(--line);
 }
 
 .goal-title {
@@ -403,8 +449,8 @@ h2 {
 .goal-progress {
   --goal-progress: 0;
   width: 100%;
-  height: 12px;
-  background: var(--heat-0);
+  height: 14px;
+  background: var(--blue-soft);
   border: 1px solid var(--line);
   border-radius: 999px;
   overflow: hidden;
@@ -414,6 +460,7 @@ h2 {
   width: calc(var(--goal-progress) * 100%);
   height: 100%;
   background: var(--goal-fill);
+  border-radius: 999px;
   transition: width 0.25s ease;
 }
 
@@ -426,8 +473,100 @@ h2 {
 
 .goal-message {
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ember-ink);
+}
+
+/* Celebración: solo cuando el objetivo se acaba de cumplir o superar (toque
+   decorativo, no cambia ningún dato ni se repite en cada render). */
+.goal-block.is-celebrating .goal-message {
+  animation: celebrate-pop 0.5s ease;
+}
+
+@keyframes celebrate-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.goal-confetti {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.goal-confetti span {
+  position: absolute;
+  top: -4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  opacity: 0;
+}
+
+.goal-confetti span:nth-child(1) {
+  left: 4%;
+  background: var(--ember);
+}
+.goal-confetti span:nth-child(2) {
+  left: 18%;
+  background: var(--blue);
+}
+.goal-confetti span:nth-child(3) {
+  left: 32%;
+  background: var(--flame);
+}
+.goal-confetti span:nth-child(4) {
+  left: 46%;
+  background: var(--ink-surface);
+}
+.goal-confetti span:nth-child(5) {
+  left: 60%;
+  background: var(--ember);
+}
+.goal-confetti span:nth-child(6) {
+  left: 74%;
+  background: var(--blue);
+}
+.goal-confetti span:nth-child(7) {
+  left: 88%;
+  background: var(--flame);
+}
+.goal-confetti span:nth-child(8) {
+  left: 97%;
+  background: var(--ink-surface);
+}
+
+.goal-block.is-celebrating .goal-confetti span {
+  animation: confetti-fall 0.9s ease-out forwards;
+}
+
+.goal-confetti span:nth-child(odd) {
+  animation-delay: 0s;
+}
+.goal-confetti span:nth-child(even) {
+  animation-delay: 0.08s;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-6px) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(64px) rotate(300deg);
+    opacity: 0;
+  }
 }
 
 .goal-block .btn-primary,
@@ -441,7 +580,7 @@ h2 {
 .goal-form {
   margin-top: 0.9rem;
   padding-top: 0.9rem;
-  border-top: 1px dashed var(--line);
+  border-top: 1px solid var(--line);
 }
 
 .goal-form .form-group {
@@ -456,12 +595,12 @@ h2 {
 
 .goal-error {
   padding: 0.45rem 0.65rem;
-  background: var(--ember-soft);
-  border-left: 3px solid var(--ember);
+  background: var(--error-soft);
+  border-left: 3px solid var(--error);
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--ember-ink);
+  color: var(--error-ink);
   overflow-wrap: break-word;
 }
 
@@ -483,7 +622,7 @@ h2 {
 .sessions-section {
   background: var(--sheet);
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 22px;
   padding: 1.5rem;
   box-shadow: var(--shadow-hard);
 }
@@ -497,7 +636,7 @@ h2 {
 
 label {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink-soft);
 }
 
@@ -505,8 +644,8 @@ input {
   width: 100%;
   padding: 0.7rem 0.8rem;
   background: var(--field);
-  border: 1px solid var(--line-control);
-  border-radius: 9px;
+  border: 2px solid var(--line-control);
+  border-radius: 12px;
   font-size: 1rem;
   font-family: inherit;
   color: var(--ink);
@@ -523,6 +662,8 @@ input:focus {
   border-color: var(--focus-ring);
 }
 
+/* Botones "físicos": cara plana + reborde inferior del mismo tono, que se
+   aplana al pulsar (estilo de botón de Duolingo, sin contorno oscuro). */
 .btn-primary {
   width: 100%;
   min-height: 44px;
@@ -530,11 +671,11 @@ input:focus {
   background-color: var(--primary-bg);
   color: var(--primary-text);
   border: 2px solid var(--primary-border);
-  border-radius: 10px;
-  box-shadow: 3px 3px 0 var(--primary-shadow);
+  border-radius: 16px;
+  box-shadow: 0 4px 0 var(--primary-shadow);
   font-size: 1rem;
   font-family: inherit;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
   transition: background-color 0.15s, transform 0.12s, box-shadow 0.12s;
 }
@@ -544,8 +685,8 @@ input:focus {
 }
 
 .btn-primary:active {
-  transform: translate(2px, 2px);
-  box-shadow: var(--shadow-press);
+  transform: translateY(4px);
+  box-shadow: none;
 }
 
 .btn-secondary {
@@ -554,12 +695,14 @@ input:focus {
   background-color: var(--sheet);
   color: var(--ink);
   border: 2px solid var(--line-control);
-  border-radius: 10px;
+  border-radius: 16px;
+  box-shadow: 0 3px 0 var(--line-control);
   font-size: 0.95rem;
   font-family: inherit;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.15s, border-color 0.15s, transform 0.12s;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.12s,
+    box-shadow 0.12s;
 }
 
 .btn-secondary:hover {
@@ -568,14 +711,16 @@ input:focus {
 }
 
 .btn-secondary:active {
-  transform: translate(1px, 1px);
+  transform: translateY(3px);
+  box-shadow: none;
 }
 
 /* Heat map */
 .heatmap-section {
   background: var(--sheet);
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-top: 5px solid var(--ember);
+  border-radius: 22px;
   padding: 1.5rem;
   box-shadow: var(--shadow-hard);
 }
@@ -603,7 +748,7 @@ input:focus {
   gap: 3px;
   min-height: 0.9rem;
   font-size: 0.62rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   color: var(--ink-soft);
 }
@@ -621,7 +766,7 @@ input:focus {
   align-items: center;
   justify-items: center;
   font-size: 0.58rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   color: var(--ink-soft);
 }
@@ -644,7 +789,7 @@ input:focus {
   padding: 0;
   background: var(--heat-0);
   border: 0;
-  border-radius: 3px;
+  border-radius: 4px;
   appearance: none;
   cursor: default;
 }
@@ -683,7 +828,7 @@ input:focus {
   .heatmap-cell:not(:disabled):hover {
     position: relative;
     z-index: 1;
-    box-shadow: 0 0 0 2px var(--ember);
+    box-shadow: 0 0 0 2px var(--ember-ink);
   }
 }
 
@@ -700,11 +845,11 @@ input:focus {
   padding: 0.32rem 0.55rem;
   background: var(--tooltip-bg);
   color: var(--tooltip-text);
-  border-radius: 6px;
+  border-radius: 8px;
   box-shadow: var(--shadow-tooltip);
   outline: 2px solid var(--tooltip-outline);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
   white-space: nowrap;
   pointer-events: none;
@@ -736,8 +881,8 @@ input:focus {
   gap: 0.35rem;
   padding: 0.9rem 0.5rem;
   margin: 0 -0.5rem;
-  border-bottom: 1px dashed var(--line);
-  border-radius: 8px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 10px;
 }
 
 .session-item:first-child {
@@ -762,7 +907,7 @@ input:focus {
 
 .session-date {
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink-soft);
   font-variant-numeric: tabular-nums;
 }
@@ -772,7 +917,7 @@ input:focus {
   background: var(--ember-soft);
   border-radius: 999px;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--ember-ink);
   font-variant-numeric: tabular-nums;
 }
@@ -787,7 +932,7 @@ input:focus {
   padding: 1.4rem 1rem;
   background: var(--empty-bg);
   border: 1px dashed var(--line);
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
   font-style: italic;
   color: var(--ink-soft);
@@ -825,8 +970,7 @@ a:focus-visible {
   .streak-card {
     flex-direction: column;
     gap: 0.75rem;
-    padding: 1.35rem;
-    box-shadow: 4px 4px 0 var(--ember);
+    padding: 1.4rem;
   }
 
   .streak-info {

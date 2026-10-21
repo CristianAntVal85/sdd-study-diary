@@ -38,6 +38,7 @@ let focusedHeatMapDate = null;
 let activeHeatMapTooltipDate = null;
 let midnightRefreshTimer = null;
 let goalFormOpenedFrom = null;
+let lastGoalState = null;
 
 // Obtener fecha actual en formato local YYYY-MM-DD
 function getTodayDateString() {
@@ -401,6 +402,7 @@ function renderWeeklyGoal(sessions) {
     goalActiveEl.hidden = true;
     goalRemoveEl.hidden = true;
     goalIdleEl.hidden = true;
+    lastGoalState = null;
     return;
   }
 
@@ -429,6 +431,19 @@ function renderWeeklyGoal(sessions) {
     'aria-valuetext',
     WeeklyGoalLogic.getAccessibleLabel(progress)
   );
+
+  // Confeti decorativo: solo al pasar a "cumplido"/"superado", no en cada render.
+  const justReachedGoal =
+    (progress.state === 'met' || progress.state === 'exceeded') &&
+    lastGoalState !== 'met' && lastGoalState !== 'exceeded';
+  lastGoalState = progress.state;
+
+  if (justReachedGoal) {
+    goalActiveEl.classList.add('is-celebrating');
+    window.setTimeout(() => {
+      goalActiveEl.classList.remove('is-celebrating');
+    }, 1000);
+  }
 }
 
 // Abrir el formulario en línea, con el objetivo vigente si es válido (CA-4.2)
